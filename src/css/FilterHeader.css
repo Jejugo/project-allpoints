@@ -19,9 +19,6 @@
   background-color: blueviolet;
 }
 
-.btn:after{
-  background-color: white;
-}
 
 .modal{
   top: 100%;
@@ -34,6 +31,7 @@
 
 .btn-small i{
   color: black;
+  font-size: 20px;
 }
 
 .btn-small:hover{
@@ -42,4 +40,8 @@
 
 .hospedes-line{
   margin: 5% 0;
+}
+
+.number-guest{
+  margin: 3%;
 }

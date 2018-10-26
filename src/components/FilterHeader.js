@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../FilterHeader.css'
+import '../css/FilterHeader.css'
 
 class FilterHeader extends Component {
   render() {
@@ -20,15 +20,15 @@ class FilterHeader extends Component {
         <div className="modal" id="hospedes">
           <div className="modal-content">
             <div className="col s12 hospedes-line">
-              <span><h5 style={{ display: 'inline' }}>Adultos</h5></span>
+              <span>Adultos</span>
               <a className="btn-floating btn-small waves-effect waves-light right filter-modal"><i className="material-icons">remove_circle_outline</i></a>
-              <h5 className="right">5</h5>
-              <a className="btn-floating btn-small waves-effect waves-light right filter-modal"><i className="material-icons">add_circle_outline</i></a>
+              <span className="number-guest right">5</span>
+              <a className="btn-floating btn-small waves-effect waves-light filter-modal"><i className="material-icons">add_circle_outline</i></a>
             </div>
             <div className="col s12 hospedes-line">
-              <span><h5 style={{ display: 'inline' }}>Crianças</h5></span>
+              <span>Criancas</span>
               <a className="btn-floating btn-small waves-effect waves-light right filter-modal"><i className="material-icons">remove_circle_outline</i></a>
-              <h5 className="right">5</h5>
+              <span className="number-guest right">5</span>
               <a className="btn-floating btn-small waves-effect waves-light right filter-modal"><i className="material-icons">add_circle_outline</i></a>
             </div>
           </div>

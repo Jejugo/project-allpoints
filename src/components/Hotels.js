@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../Hotels.css'
+import '../css/Hotels.css'
 
 class Hotels extends Component {
   render() {

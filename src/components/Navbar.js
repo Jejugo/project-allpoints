@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../Navbar.css'
+import '../css/Navbar.css'
 import FilterHeader from './FilterHeader';
 
 class Navbar extends Component {
