@@ -1,0 +1,36 @@
+.hotel-grid {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.hotel-grid li {
+  padding: 10px 15px;
+  text-align: left;
+}
+
+.hotel {
+  width: 140px;
+  border: 1px solid black;
+}
+.hotel-title,
+.hotel-authors {
+  font-size: 0.8em;
+}
+.hotel-title {
+  margin-top: 10px;
+}
+
+.hotel-top {
+  position: relative;
+  height: 200px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.hotel-set {
+  text-align: center;
+}

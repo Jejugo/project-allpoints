@@ -1,0 +1,38 @@
+.header{
+  background-color: rgb(84, 26, 110); 
+}
+
+#header-buttons {
+  display: flow-root;
+  vertical-align: middle;
+  padding-top: 0.5%;
+  height: 50px;
+}
+
+#nav {
+  position: fixed;
+  top: 0; 
+  width: 100%;
+  display: block;
+  z-index: 9999;
+}
+
+#header-content{
+  height: 200px;
+  -webkit-transition: height 0.5s;
+  transition: all ease height 0.5s;
+}
+
+.btn-destiny{
+  background-color: rgb(84, 26, 110) !important; 
+  border: 1px solid white !important;
+  color: white;
+  position: absolute;
+  z-index: 1;
+  border-radius: 15px;
+}
+
+.btn-destiny:hover{
+  background-color: white !important;
+  color: black;
+}
