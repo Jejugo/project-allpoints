@@ -9,6 +9,10 @@
   height: 50px;
 }
 
+#country-title{
+  font-size: 30px;
+}
+
 #nav {
   position: fixed;
   top: 0; 

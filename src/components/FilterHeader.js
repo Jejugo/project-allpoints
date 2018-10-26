@@ -12,7 +12,7 @@ class FilterHeader extends Component {
             <a className="waves-effect waves-light btn-small btn btn-filter">Comodidades</a>
             <a className="waves-effect waves-light btn-small btn btn-filter">Preço</a>
             <a className="waves-effect waves-light btn-small btn btn-filter">Ratings</a>
-          </div>  
+          </div>
         </div>
       </div>
     );

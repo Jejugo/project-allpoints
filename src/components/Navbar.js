@@ -15,7 +15,7 @@ class Navbar extends Component {
                 <a className="brand-logo left">
                   <img src={logo} alt='All Points Logo' style={{height: '40px', verticalAlign: 'middle'}}/>
                 </a>
-                <a data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
+                <a data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons right">menu</i></a>
                 <ul id="nav-mobile" className="right hide-on-med-and-down">
                   <li><a href="sass.html">Faça a sua reserva</a></li>
                   <li><a href="badges.html">Troque seus pontos</a></li>
@@ -23,9 +23,9 @@ class Navbar extends Component {
                 </ul>
               </div>
               <div id="header-content">
-                <h3>Amsterdã, Reino dos Paises Baixos</h3>
+                <h3 id="country-title">Amsterdã, Reino dos Paises Baixos</h3>
                 <p>Encontramos 209 Hoteis</p>
-                <a class="btn btn-destiny">Alterar Destino</a>
+                <a className="btn btn-destiny">Alterar Destino</a>
               </div>
             </div>
           </div>

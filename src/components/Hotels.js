@@ -21,7 +21,7 @@ class Hotels extends Component {
     });
 
     return (
-      <div className="hotel-set">
+      <div className="container hotel-set">
 					<ol className="hotel-grid">
 						{hotelList}
 					</ol>
