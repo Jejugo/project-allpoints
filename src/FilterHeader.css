@@ -22,3 +22,24 @@
 .btn:after{
   background-color: white;
 }
+
+.modal{
+  top: 100%;
+  width: 20%;
+}
+
+.filter-modal{
+  background-color: transparent;
+}
+
+.btn-small i{
+  color: black;
+}
+
+.btn-small:hover{
+  background-color: white;
+}
+
+.hospedes-line{
+  margin: 5% 0;
+}
