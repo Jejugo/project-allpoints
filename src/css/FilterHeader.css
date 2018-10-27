@@ -4,6 +4,7 @@
   height: 55px;
   position: absolute;
   z-index: 1;
+  height: fit-content;
 }
 
 .btn-filter {
@@ -19,6 +20,9 @@
   background-color: blueviolet;
 }
 
+.btn:after{
+  background-color: white;
+}
 
 .modal{
   top: 100%;
@@ -34,14 +38,23 @@
   font-size: 20px;
 }
 
-.btn-small:hover{
-  background-color: white;
+.hospedes-line{
+  margin: 5px 0%;
+  padding: 5px;
 }
 
-.hospedes-line{
-  margin: 5% 0;
+.hospedes-bottom{
+  margin: 10% 0
+}
+
+.apply{
+  color: green
 }
 
 .number-guest{
   margin: 3%;
+}
+
+.hospedes-line{
+  margin-bottom: 10%;
 }

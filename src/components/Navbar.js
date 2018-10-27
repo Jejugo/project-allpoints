@@ -4,7 +4,7 @@ import FilterHeader from './FilterHeader';
 
 class Navbar extends Component {
   render() {
-    const { logo } = this.props;
+    const { logo,changeHospedes, hospedes, resetGuestValues, apply } = this.props;
 
     return (
       <div id="nav">
@@ -12,7 +12,7 @@ class Navbar extends Component {
           <div className="nav-wrapper">
             <div className="container">
               <div id="header-buttons">
-                <a className="brand-logo left">
+                <a className="brand-logo">
                   <img src={logo} alt='All Points Logo' style={{height: '40px', verticalAlign: 'middle'}}/>
                 </a>
                 <a data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons right">menu</i></a>
@@ -31,7 +31,7 @@ class Navbar extends Component {
           </div>
         </nav>
 
-        <FilterHeader></FilterHeader>
+        <FilterHeader changeHospedes={changeHospedes} hospedes={hospedes} resetGuestValues={resetGuestValues} apply={apply}></FilterHeader>
         <ul className="sidenav" id="mobile-demo">
           <li><a href="sass.html">Sass</a></li>
           <li><a href="badges.html">Components</a></li>

@@ -26,7 +26,9 @@
   -webkit-transition: height 0.5s;
   transition: all ease height 0.5s;
 }
-
+.nav-wrapper{
+  overflow: hidden;
+}
 .btn-destiny{
   background-color: rgb(84, 26, 110) !important; 
   border: 1px solid white !important;
