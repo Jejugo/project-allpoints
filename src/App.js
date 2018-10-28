@@ -156,9 +156,11 @@ class App extends Component {
     console.log(filteredHotels);
 
     //filter by Price
-    filteredHotels = filteredHotels.filter(room => {
-      return room.price <= preco;
-    });
+    if (preco > 0){
+      filteredHotels = filteredHotels.filter(room => {
+        return room.price <= preco;
+      });
+    }
 
     console.log("Third Filter");
     console.log(filteredHotels);
@@ -171,11 +173,21 @@ class App extends Component {
 
   }
 
+  resetPrice = (e) => {
+    this.setState({
+      preco: 0
+    });
+
+    this.apply();
+  }
+
   //Function used to reset state values and bring the filter to an initial state.
   resetGuestValues = (e) => {
     this.setState({
       hospedes: {adultos: 0, criancas: 0}
     });
+
+    this.apply();
   }
 
   handleComodidades = (e) => {
@@ -239,7 +251,7 @@ class App extends Component {
 
   render() {
 
-    const { hotels, hospedes, filteredHotels, comodidades, preco }= this.state;
+    const { hotels, hospedes, filteredHotels, comodidades, preco}= this.state;
 
     
 
@@ -253,6 +265,7 @@ class App extends Component {
         comodidades={comodidades}
         changePrice={this.changePrice}
         preco={preco}
+        resetPrice={this.resetPrice}
         >
         </Navbar>
         <div id="mainPage">

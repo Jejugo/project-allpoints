@@ -6,7 +6,7 @@ const ModalHospede = (props) => {
   const { changeHospedes, hospedes, resetGuestValues, apply } = props;
 
   return(
-    <div className="modal" id="hospedes">
+    <div className="modal modal-hotel" id="hospedes">
     <div className="modal-content">
       <div className="col s12 hospedes-line">
         <span>Adultos</span>

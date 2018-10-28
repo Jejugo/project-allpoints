@@ -4,7 +4,7 @@ import FilterHeader from './FilterHeader';
 
 class Navbar extends Component {
   render() {
-    const { logo,changeHospedes, hospedes, resetGuestValues, apply, handleComodidades, comodidades, changePrice, preco} = this.props;
+    const { logo,changeHospedes, hospedes, resetGuestValues, apply, handleComodidades, comodidades, changePrice, preco, resetPrice} = this.props;
 
     return (
       <div id="nav">
@@ -28,7 +28,7 @@ class Navbar extends Component {
                 <a className="btn btn-destination" id="destination">Alterar Destino</a>
                 <div className="row search-bar-header">
                   <div class="input-field col s6">
-                    <label class="active" for="destination">Write your Destination: </label>
+                    <label className="active" for="destination">Write your Destination: </label>
                     <input name="destination" type="text" class="validate input-header"/>
                   </div>
                 </div>
@@ -38,11 +38,20 @@ class Navbar extends Component {
           </div>
         </nav>
 
-        <FilterHeader changeHospedes={changeHospedes} hospedes={hospedes} resetGuestValues={resetGuestValues} apply={apply} handleComodidades={handleComodidades} comodidades={comodidades} changePrice={changePrice} preco={preco}></FilterHeader>
+        <FilterHeader changeHospedes={changeHospedes} 
+        hospedes={hospedes} 
+        resetGuestValues={resetGuestValues} 
+        apply={apply} handleComodidades={handleComodidades} 
+        comodidades={comodidades} 
+        changePrice={changePrice} 
+        preco={preco}
+        resetPrice={resetPrice}
+        >
+        </FilterHeader>
         <ul className="sidenav" id="mobile-demo">
-          <li><a href="sass.html">Sass</a></li>
-          <li><a href="badges.html">Components</a></li>
-          <li><a href="collapsible.html">JavaScript</a></li>
+          <li><a href="sass.html">Faça a sua reserva</a></li>
+          <li><a href="badges.html">Troque seus pontos</a></li>
+          <li><a href="collapsible.html">Login</a></li>
         </ul>
 
       </div>

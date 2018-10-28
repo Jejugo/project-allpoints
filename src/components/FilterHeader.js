@@ -9,7 +9,7 @@ import ModalRating from './modals/ModalRating';
 class FilterHeader extends Component {
   render() {
 
-    const { changeHospedes, hospedes, resetGuestValues, apply, handleComodidades, comodidades, changePrice, preco } = this.props;
+    const { changeHospedes, hospedes, resetGuestValues, apply, handleComodidades, comodidades, changePrice, preco, resetPrice } = this.props;
 
 
     return (
@@ -25,7 +25,7 @@ class FilterHeader extends Component {
         </div>
         <ModalHospede changeHospedes={changeHospedes} hospedes={hospedes} resetGuestValues={resetGuestValues} apply={apply}></ModalHospede>
         <ModalComodidade handleComodidades={handleComodidades} comodidades={comodidades} apply={apply}></ModalComodidade>
-        <ModalPreco changePrice={changePrice} preco={preco} apply={apply}></ModalPreco>
+        <ModalPreco changePrice={changePrice} preco={preco} apply={apply} resetPrice={resetPrice}></ModalPreco>
         <ModalRating></ModalRating>
       </div>
     );

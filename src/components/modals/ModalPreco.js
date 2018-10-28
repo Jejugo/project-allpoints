@@ -3,10 +3,10 @@ import '../../css/FilterHeader.css'
 
 const ModalPreco = (props) => {
 
-  const { changePrice, preco, apply } = props;
+  const { changePrice, preco, apply, resetPrice } = props;
 
   return(
-    <div className="modal" id="preco">
+    <div className="modal modal-hotel" id="preco">
       <div className="modal-content">
         <h4 className="center comodidades-titulo" style={{margin: "2% 0 15% 0"}}>Diária</h4>
         <form action="#">
@@ -15,7 +15,7 @@ const ModalPreco = (props) => {
           </p>
         </form>
         <div>
-        <a href="#" className="left hospedes-bottom">Limpar</a>
+        <a href="#" className="left hospedes-bottom" onClick={(e) => resetPrice(e)}>Limpar</a>
         <a href="#" className="right hospedes-bottom apply" onClick={(e) => apply(e)}>Aplicar</a>
       </div>
       </div>

@@ -61,7 +61,11 @@
 }
 
 .modal{
-  width: 40%;
+  width: 30%;
+}
+
+.modal-hotel{
+  width: 20% !important;
 }
 
 .datepicker-date-display{

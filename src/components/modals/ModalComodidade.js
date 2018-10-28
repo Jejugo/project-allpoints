@@ -6,7 +6,7 @@ const ModalComodidade = (props) => {
   const { handleComodidades, comodidades, apply } = props;
 
   return(
-    <div className="modal" id="comodidades">
+    <div className="modal modal-hotel" id="comodidades">
       <div className="modal-content">
       <h4 className="center comodidades-titulo" style={{margin: "2% 0 10% 0"}}>Comodidades</h4>
         <form>
