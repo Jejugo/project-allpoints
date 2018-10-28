@@ -91,16 +91,20 @@ class App extends Component {
       almoco: false,
       wifiGratis: false,
       showsMusicais: false
-    }
+    },
+    country: ''
   }
 
   apply = (e) => {
+    e.preventDefault();
+
     //Declaring values that will be used to filter the Hotels.
     const aux = this.state.hotels;
     const auxAdultos = this.state.hospedes.adultos;
     const auxCriancas = this.state.hospedes.criancas;
     const comodidades = this.state.comodidades;
     const preco = this.state.preco;
+    const country = this.state.country;
 
     //create an array with values that are true for conviences
     const comodidadeTrue = Object.keys(comodidades).filter(k => {
@@ -165,7 +169,13 @@ class App extends Component {
     console.log("Third Filter");
     console.log(filteredHotels);
 
-    //
+    if (country !== ''){
+      filteredHotels = filteredHotels.filter(room => {
+        return room.country === country;
+      });
+    } 
+    console.log("Fourth Filter");
+    console.log(filteredHotels);
 
     this.setState({
       filteredHotels: filteredHotels
@@ -249,9 +259,16 @@ class App extends Component {
 
   }
 
+  handleInputDestination = (e) => {
+    console.log(e);
+    this.setState({
+      country: e.target.value
+    });
+  }
+
   render() {
 
-    const { hotels, hospedes, filteredHotels, comodidades, preco}= this.state;
+    const { hotels, hospedes, filteredHotels, comodidades, preco, country }= this.state;
 
     
 
@@ -266,6 +283,8 @@ class App extends Component {
         changePrice={this.changePrice}
         preco={preco}
         resetPrice={this.resetPrice}
+        handleInputDestination={this.handleInputDestination}
+        country={country}
         >
         </Navbar>
         <div id="mainPage">

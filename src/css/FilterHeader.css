@@ -91,3 +91,18 @@ input[type=range]::-webkit-slider-thumb {
 input[type=range]+.thumb.active {
   border-radius: 60% 60% 60% 0;
 }
+
+.input-top{
+  display: none;
+}
+
+/* label focus color */
+.input-field-app input:focus + label {
+  color: white !important;
+}
+/* label underline focus color */
+.row .input-field-app input:focus {
+  border-bottom: 0.5px solid white !important;
+  box-shadow: 0 0.5px 0 0 white !important;
+  color: white;
+}

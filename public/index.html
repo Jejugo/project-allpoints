@@ -53,8 +53,8 @@
       $('datapicker').addClass("modal-datapicker-hotel");
 
       $('.btn-destination').click(function(){
-        $(this).css("display", "none");
-        $('.search-bar-header').show();
+        $(this).fadeOut();
+        $('.search-bar-header').fadeIn();
       });
       
       var array_of_dom_elements = document.querySelectorAll("input[type=range]");
@@ -65,12 +65,19 @@
       };
 
       function scrollFunction() {
-        if (document.body.scrollTop > 60 || document.documentElement.scrollTop > 60) {
+        if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+          //example using pure javascript
           document.getElementById("header-content").style.height = "0px";
+          
+          //example using jQuery
           $('.search-bar-header').hide();
-          $('.btn-destination').show();
+          $('.btn-destination').fadeIn();
+          $('.input-top').fadeIn();
         } else {
+          //example using pure javascript
           document.getElementById("header-content").style.height = "";
+          //example using jquery
+          $('.input-top').fadeOut();
         }
       }
   });
