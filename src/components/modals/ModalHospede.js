@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../../css/FilterHeader.css'
 
 const ModalHospede = (props) => {

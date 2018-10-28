@@ -44,7 +44,8 @@
 }
 
 .hospedes-bottom{
-  margin: 10% 0
+  margin: 10% 0;
+  color: inherit
 }
 
 .apply{
@@ -57,4 +58,32 @@
 
 .hospedes-line{
   margin-bottom: 10%;
+}
+
+.modal{
+  width: 40%;
+}
+
+.datepicker-date-display{
+  background-color: rgb(84, 26, 110);
+}
+.datepicker-cancel{
+  color: black;
+}
+
+/* slider color */ 
+input[type=range]+.thumb{
+  background-color: rgb(84, 26, 110);
+  
+}
+
+input[type=range]+.thumb .value {
+  color:rgb(84, 26, 110);
+}
+
+input[type=range]::-webkit-slider-thumb {
+  background-color:rgb(84, 26, 110);
+}
+input[type=range]+.thumb.active {
+  border-radius: 60% 60% 60% 0;
 }

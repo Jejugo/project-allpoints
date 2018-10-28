@@ -4,7 +4,7 @@ import FilterHeader from './FilterHeader';
 
 class Navbar extends Component {
   render() {
-    const { logo,changeHospedes, hospedes, resetGuestValues, apply } = this.props;
+    const { logo,changeHospedes, hospedes, resetGuestValues, apply, handleComodidades, comodidades, changePrice, preco} = this.props;
 
     return (
       <div id="nav">
@@ -25,13 +25,20 @@ class Navbar extends Component {
               <div id="header-content">
                 <h3 id="country-title">Amsterdã, Reino dos Paises Baixos</h3>
                 <p>Encontramos 209 Hoteis</p>
-                <a className="btn btn-destiny">Alterar Destino</a>
+                <a className="btn btn-destination" id="destination">Alterar Destino</a>
+                <div className="row search-bar-header">
+                  <div class="input-field col s6">
+                    <label class="active" for="destination">Write your Destination: </label>
+                    <input name="destination" type="text" class="validate input-header"/>
+                  </div>
+                </div>
               </div>
+              
             </div>
           </div>
         </nav>
 
-        <FilterHeader changeHospedes={changeHospedes} hospedes={hospedes} resetGuestValues={resetGuestValues} apply={apply}></FilterHeader>
+        <FilterHeader changeHospedes={changeHospedes} hospedes={hospedes} resetGuestValues={resetGuestValues} apply={apply} handleComodidades={handleComodidades} comodidades={comodidades} changePrice={changePrice} preco={preco}></FilterHeader>
         <ul className="sidenav" id="mobile-demo">
           <li><a href="sass.html">Sass</a></li>
           <li><a href="badges.html">Components</a></li>
