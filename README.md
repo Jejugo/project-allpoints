@@ -18,9 +18,11 @@ the "Datas" button was NOT implemented.
 * The object created below was a representation of an API get request.
 * The Ratings are not supposed to be changed since they would come from the server with the average of ratings people rated on some other part - not built - of the website
 * You can search for countries such as: "Estados Unidos da América", "Brasil", "Holanda", México", "Nova Zelândia", "Australia"
+* To remove the check symbol, click on "Limpar"
 
 Points of improvement: 
 * Could have standardized the "API data" instead of creating a new array every filter apply
 * Could have created more objects instead of single variables. This way the application has MANY variables being passed through props.
 * When Filtering Conveniences, it only shows the result if the hotel offers exactly what the customer ordered. It should be improved to filter properly by filtering what he/she ordered but also showing other options.
 * Filtered by Country. Could have created a filter by cities as well.
+* Remove check symbol without having to click "Limpar"

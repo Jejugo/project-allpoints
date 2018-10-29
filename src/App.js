@@ -21,12 +21,14 @@ the "Datas" button was NOT implemented.
 * The object created below was a representation of an API get request.
 * The Ratings are not supposed to be changed since they would come from the server with the average of ratings people rated on some other part - not built - of the website
 * You can search for countries such as: "Estados Unidos da América", "Brasil", "Holanda", México", "Nova Zelândia", "Australia"
+* To remove the check symbol, click on "Limpar"
 
 Points of improvement: 
 * Could have standardized the "API data" instead of creating a new array every filter apply
 * Could have created more objects instead of single variables. This way the application has MANY variables being passed through props.
 * When Filtering Conveniences, it only shows the result if the hotel offers exactly what the customer ordered. It should be improved to filter properly by filtering what he/she ordered but also showing other options.
 * Filtered by Country. Could have created a filter by cities as well.
+* Remove check symbol without having to click "Limpar"
 
 ***/
 
@@ -113,7 +115,6 @@ class App extends Component {
       errorMessage: ''
     },
     preco: 0,
-    ratings: 0,
     comodidades: {
       cafeDaManha: false,
       almoco: false,
@@ -122,7 +123,13 @@ class App extends Component {
     },
     country: '',
     numberHotels: null,
-    ratingValue: 0
+    ratingValue: 0,
+    check: {
+      checkGuest: false,
+      checkPrice: false,
+      checkRatings: false,
+      checkConvenience: false
+    }
   }
 
   apply = (e) => {
@@ -165,11 +172,7 @@ class App extends Component {
       filteredHotels = filteredHotels.filter(room => {
         return room.country === country;
       });
-
-      console.log("Filter by Country");
-      console.log(filteredHotels);
  
-
       //filter by Guests based on User Input and summing the total number of people.
       if(auxAdultos !== 0 || auxCriancas !== 0){
         console.log("Esse eh o array!");
@@ -177,10 +180,10 @@ class App extends Component {
         filteredHotels = filteredHotels.filter(room => {
           return room.numberOfPeople === (auxAdultos + auxCriancas);
         });
+        this.setState((previous)=>({
+          check: {...previous.check, checkGuest: true}
+        }));
       }
-
-      console.log("Filter by People");
-      console.log(filteredHotels);
 
       //filter by Conveniences
       if (comodidadeTrue.length > 0){
@@ -192,25 +195,29 @@ class App extends Component {
           }
           return null;
         });
+        this.setState((previous)=>({
+          check: {...previous.check, checkConvenience: true}
+        }));
       }
-      console.log("Filter by Conveniences");
-      console.log(filteredHotels);
 
       //filter by Price
       if (preco > 0){
         filteredHotels = filteredHotels.filter(room => {
           return room.price <= preco;
         });
+        this.setState((previous)=>({
+          check: {...previous.check, checkPrice: true}
+        }));
       }
-
-      console.log("Filter by Price");
-      console.log(filteredHotels);
 
       //filter by Ratings
       if (rating !== 0){
         filteredHotels = filteredHotels.filter(room => {
           return room.rating == rating;
         });
+        this.setState((previous)=>({
+          check: {...previous.check, checkRatings: true}
+        }));
       }
 
     }
@@ -232,10 +239,10 @@ class App extends Component {
         filteredHotels = filteredHotels.filter(room => {
           return room.numberOfPeople === (auxAdultos + auxCriancas);
         });
+        this.setState((previous)=>({
+          check: {...previous.check, checkGuest: true}
+        }));
       }
-
-      console.log("Filter by People");
-      console.log(filteredHotels);
 
       //filter by Conveniences
       if (comodidadeTrue.length > 0){
@@ -247,33 +254,30 @@ class App extends Component {
           }
           return null;
         });
+        this.setState((previous)=>({
+          check: {...previous.check, checkConvenience: true}
+        }));
       }
-      console.log("Filter by Conveniences");
-      console.log(filteredHotels);
 
       //filter by Price
       if (preco > 0){
         filteredHotels = filteredHotels.filter(room => {
           return room.price <= preco;
         });
+        this.setState((previous)=>({
+          check: {...previous.check, checkPrice: true}
+        }));
       }
-
-      console.log("Filter by Price");
-      console.log(filteredHotels);
 
       //filter by Ratings
       if (rating !== 0){
         filteredHotels = filteredHotels.filter(room => {
-          console.log("quarto review:");
-          console.log(room.rating);
-          console.log("cliente quer: ");
-          console.log(rating);
           return room.rating == rating;
         });
+        this.setState((previous)=>({
+          check: {...previous.check, checkRatings: true}
+        }));
       }
-
-      console.log("Filter by Ratings");
-      console.log(filteredHotels);
     }
 
     this.setState({
@@ -284,16 +288,18 @@ class App extends Component {
   }
 
   resetPrice = (e) => {
-    this.setState({
-      preco: 0
-    });
+    this.setState((previous)=>({
+      preco: 0,
+      check: {...previous.check, checkPrice: false}
+    }));
   }
 
   //Function used to reset state values and bring the filter to an initial state.
   resetGuestValues = (e) => {
-    this.setState({
-      hospedes: {adultos: 0, criancas: 0}
-    });
+    this.setState((previous)=>({
+      hospedes: {adultos: 0, criancas: 0},
+      check: {...previous.check, checkGuest: false}
+    }));
   }
 
   handleComodidades = (e) => {
@@ -303,7 +309,8 @@ class App extends Component {
       const values = Object.keys(comodidades)
       values.forEach(item => {
         this.setState((previous) => ({
-          comodidades: {...previous.comodidades, [item]: false}
+          comodidades: {...previous.comodidades, [item]: false},
+          check: {...previous.check, checkConvenience: false}
         }))
       });
 
@@ -381,15 +388,16 @@ class App extends Component {
   }
 
   resetRating = (e) => {
-    this.setState({
-      ratingValue: 0
-    })
+    this.setState((previous)=>({
+      ratingValue: 0,
+      check: {...previous.check, checkRatings: false}
+    }));
   }
 
 
   render() {
 
-    const { hotels, hospedes, filteredHotels, comodidades, preco, country, numberHotels, ratingValue }= this.state;
+    const { hotels, hospedes, filteredHotels, comodidades, preco, country, numberHotels, ratingValue, check }= this.state;
 
     
 
@@ -410,6 +418,7 @@ class App extends Component {
         ratingValue={ratingValue}
         changeRating={this.changeRating}
         resetRating={this.resetRating}
+        check={check}
         >
         </Navbar>
         <div id="mainPage">

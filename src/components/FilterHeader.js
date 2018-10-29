@@ -8,7 +8,7 @@ import ModalRating from './modals/ModalRating';
 class FilterHeader extends Component {
   render() {
 
-    const { changeHospedes, hospedes, resetGuestValues, apply, handleComodidades, comodidades, changePrice, preco, resetPrice, ratingValue, changeRating, resetRating } = this.props;
+    const { changeHospedes, hospedes, resetGuestValues, apply, handleComodidades, comodidades, changePrice, preco, resetPrice, ratingValue, changeRating, resetRating, check } = this.props;
 
 
     return (
@@ -16,10 +16,28 @@ class FilterHeader extends Component {
         <div className="nav-content filterHeader z-depth-2">
           <div className="container">
             <button className="waves-effect waves-light btn-small btn btn-filter datepicker">Datas</button>
-            <button href="#hospedes" className="waves-effect waves-light btn-small btn btn-filter modal-trigger">{hospedes.adultos + hospedes.criancas} Hóspedes</button>
-            <button href="#comodidades" className="waves-effect waves-light btn-small btn btn-filter modal-trigger">Comodidades</button>
-            <button href="#preco" className="waves-effect waves-light btn-small btn btn-filter modal-trigger">Preço</button>
-            <button href="#ratings" className="waves-effect waves-light btn-small btn btn-filter modal-trigger">Ratings</button>
+            {check.checkGuest === true ? (
+              <button href="#hospedes" className="waves-effect waves-light btn-small btn btn-filter modal-trigger"><a className="btn-flat btn"><i class="material-icons">done</i></a>{hospedes.adultos + hospedes.criancas} Hóspedes</button>
+            ):(
+              <button href="#hospedes" className="waves-effect waves-light btn-small btn btn-filter modal-trigger">{hospedes.adultos + hospedes.criancas} Hóspedes</button>
+            )}
+            {check.checkConvenience === true ? (
+              <button href="#comodidades" className="waves-effect waves-light btn-small btn btn-filter modal-trigger"><i class="material-icons">done</i> Comodidades</button>
+            ):(
+              <button href="#comodidades" className="waves-effect waves-light btn-small btn btn-filter modal-trigger">Comodidades</button>
+            )}
+            {check.checkPrice === true ? (
+              <button href="#preco" className="waves-effect waves-light btn-small btn btn-filter modal-trigger"><i class="material-icons">done</i> Preço</button>
+            ):(
+              <button href="#preco" className="waves-effect waves-light btn-small btn btn-filter modal-trigger">Preço</button>
+            )}
+            {check.checkRatings === true ? (
+              <button href="#ratings" className="waves-effect waves-light btn-small btn btn-filter modal-trigger"><i class="material-icons">done</i> Ratings</button>
+            ):(
+              <button href="#ratings" className="waves-effect waves-light btn-small btn btn-filter modal-trigger">Ratings</button>
+            )}
+            
+            
           </div>
         </div>
         <ModalHospede changeHospedes={changeHospedes} hospedes={hospedes} resetGuestValues={resetGuestValues} apply={apply}></ModalHospede>

@@ -4,7 +4,7 @@ import FilterHeader from './FilterHeader';
 
 class Navbar extends Component {
   render() {
-    const { logo,changeHospedes, hospedes, resetGuestValues, apply, handleComodidades, comodidades, changePrice, preco, resetPrice, handleInputDestination, country, numberHotels, ratingValue, changeRating, resetRating} = this.props;
+    const { logo,changeHospedes, hospedes, resetGuestValues, apply, handleComodidades, comodidades, changePrice, preco, resetPrice, handleInputDestination, country, numberHotels, ratingValue, changeRating, resetRating, check} = this.props;
 
     return (
       <div id="nav">
@@ -66,6 +66,7 @@ class Navbar extends Component {
         ratingValue={ratingValue}
         changeRating={changeRating}
         resetRating={resetRating}
+        check={check}
         >
         </FilterHeader>
         <ul className="sidenav" id="mobile-demo">
