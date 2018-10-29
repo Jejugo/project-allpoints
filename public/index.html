@@ -51,16 +51,6 @@
       $('.modal').modal();
       $('.datepicker').datepicker();
       $('datapicker').addClass("modal-datapicker-hotel");
-      $('input.autocomplete').autocomplete({
-        data: {
-          "Estados Unidos da América": null,
-          "Brasil": null,
-          "Holanda": null,
-          "México": null,
-          "Nova Zelândia": null,
-          "Australia": null
-        },
-      });
 
 
       $('.btn-destination').click(function(){
@@ -84,11 +74,13 @@
           $('.search-bar-header').hide();
           $('.btn-destination').fadeIn();
           $('.input-top').fadeIn();
+          $('#input-bottom-header').val('');
         } else {
           //example using pure javascript
           document.getElementById("header-content").style.height = "";
           //example using jquery
           $('.input-top').fadeOut();
+          $('#input-top-header').val('');
         }
       }
   });

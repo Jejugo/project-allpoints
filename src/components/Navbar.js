@@ -18,9 +18,9 @@ class Navbar extends Component {
                     <img src={logo} alt='All Points Logo' style={{height: '40px', verticalAlign: 'middle'}}/>
                   </a>
                   <div className="container">
-                  <form onSubmit={(e) => apply(e)}>
+                  <form onSubmit={(e) => apply(e)} autocomplete="off">
                     <div className="input-field col l7 s12 input-field-app input-top">
-                      <input name="destination" type="text" className="autocomplete" onChange={(e) => handleInputDestination(e)}/>
+                      <input id="input-top-header" name="destination" type="text" onChange={(e) => handleInputDestination(e)}/>
                       <label htmlFor="destination">Destino: </label>
                     </div>
                   </form>
@@ -42,10 +42,10 @@ class Navbar extends Component {
                 
                 <a className="btn btn-destination" id="destination">Alterar Destino</a>
                 <div className="row search-bar-header">
-                <form onSubmit={(e) => apply(e)}>
+                <form onSubmit={(e) => apply(e)} autocomplete="off">
                   <div className="input-field col s6 input-field-app">
                     <label htmlFor="destination">Destino: </label>
-                    <input name="destination" type="text" className="input-header" onChange={(e) => handleInputDestination(e)} />
+                    <input id="input-bottom-header" name="destination" type="text" className="input-header" onChange={(e) => handleInputDestination(e)} />
                   </div>
                 </form>
                 </div>
