@@ -4,7 +4,7 @@ Below you will find some information on how to perform common tasks.<br>
 You can find the most recent version of this guide [here](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
  *  To start the project just run: "npm install" followed by "npm start".
- * 
+ 
  * This project was made having efficiency in mind. That is why I tried to declare every variable used
 trying to explicitly describe what each one does. I also tried to describe functions purposes on the comments below.
 This code was built also having in mind an automated test enviroment so tags were used for the exact purpose they were created.
