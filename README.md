@@ -27,4 +27,4 @@ Points of improvement:
 * Filtered by Country. Could have created a filter by cities as well.
 * Remove check symbol without having to click "Limpar"
 
-* Thank you for this amazing challenge!
+Thank you for this amazing challenge!
