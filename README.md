@@ -22,7 +22,9 @@ the "Datas" button was NOT implemented.
 
 Points of improvement: 
 * Could have standardized the "API data" instead of creating a new array every filter apply
-* Could have created more objects instead of single variables. This way the application has MANY variables being passed through props.
+* Could have created more objects instead of single variables. This way the application has many variables being passed through props.
 * When Filtering Conveniences, it only shows the result if the hotel offers exactly what the customer ordered. It should be improved to filter properly by filtering what he/she ordered but also showing other options.
 * Filtered by Country. Could have created a filter by cities as well.
 * Remove check symbol without having to click "Limpar"
+
+* Thank you for this amazing challenge!
