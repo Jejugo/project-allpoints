@@ -5,84 +5,112 @@ import Hotels from './components/Hotels';
 import Functions from './functions';
 
 
-//  This project was made having efficiency in mind. That is why I tried to declare every variable used
-//trying to explicitly describe what each one does. I also tried to describe functions purposes on the comments below.
-//This code was built also having in mind an automated test enviroment so tags were used for the exact purpose they were created.
-//Therefore buttons are buttons and not links(<a></a>).
+/***  
+ *  To start the project just run: "npm install" followed by "npm start".
+ * 
+ * This project was made having efficiency in mind. That is why I tried to declare every variable used
+trying to explicitly describe what each one does. I also tried to describe functions purposes on the comments below.
+This code was built also having in mind an automated test enviroment so tags were used for the exact purpose they were created.
+Therefore buttons are buttons and not links(<a></a>).
 
-//In addition, I tried to avoid nesting loops even though I had a little time to think of an API format that would not require it.
-//For that reason I had to implement it in certain parts for the code - unfortuantely.
+* In addition, I tried to avoid nesting loops even though I had a little time to think of an API format that would not require it.
+For that reason I had to implement it in certain parts for the code - unfortuantely.
+* To filter the search you can always click on a button (Hospedes, Comodidades, Preço, Ratings) to filter accordingly.
+the "Datas" button was NOT implemented.
+* To remove a filter just click Limpar and then Apply. 
+* The object created below was a representation of an API get request.
+* The Ratings are not supposed to be changed since they would come from the server with the average of ratings people rated on some other part - not built - of the website
+* You can search for countries such as: "Estados Unidos da América", "Brasil", "Holanda", México", "Nova Zelândia", "Australia"
 
-//The object created below was a representation of an API get request.
+Points of improvement: 
+* Could have standardized the "API data" instead of creating a new array every filter apply
+* Could have created more objects instead of single variables. This way the application has MANY variables being passed through props.
+* When Filtering Conveniences, it only shows the result if the hotel offers exactly what the customer ordered. It should be improved to filter properly by filtering what he/she ordered but also showing other options.
+* Filtered by Country. Could have created a filter by cities as well.
+
+***/
 
 class App extends Component {
 
   state = {
     hotels: [
       {name: "Windsor Hotel", availableRooms: [
-        {id: 234324234,room: "165", numberOfPeople: 1, price: 250, rating: 5, comodidades: ["Cafe da Manha", "Wifi Gratis"]},
-        {id: 234324322, room: "122", numberOfPeople: 2, price: 150, rating: 4, comodidades: ["Almoco"]},
-        {id: 231221321, room: "131", numberOfPeople: 2, price: 250, rating: 4, comodidades: ["Shows Musicais", "Cafe da Manha"]},
-        {id: 123121233, room: "531", numberOfPeople: 1, price: 100, rating: 3, comodidades: ["Almoco", "Wifi Gratis"]},
-        {id: 321323213, room: "143", numberOfPeople: 5, price: 400, rating: 5, comodidades: ["Almoco", "Shows Musicais"]},
-        {id: 232131233,room: "431", numberOfPeople: 3, price: 250, rating: 2, comodidades: ["Cafe da Manha"]},
-        {id: 312312213, room: "156", numberOfPeople: 10, price: 1000, rating: 5, comodidades: ["Wifi Gratis"]}
+        {id: 234324234,room: "165", rating: 5, numberOfPeople: 1, price: 250, comodidades: ["Cafe da Manha", "Wifi Gratis"]},
+        {id: 234324322, room: "122", rating: 3, numberOfPeople: 2, price: 150, comodidades: ["Almoco"]},
+        {id: 231221321, room: "131", rating: 4, numberOfPeople: 2, price: 250, comodidades: ["Shows Musicais", "Cafe da Manha"]},
+        {id: 123121233, room: "531", rating: 1, numberOfPeople: 1, price: 100, comodidades: ["Almoco", "Wifi Gratis"]},
+        {id: 321323213, room: "143", rating: 1, numberOfPeople: 5, price: 400, comodidades: ["Almoco", "Shows Musicais"]},
+        {id: 232131233,room: "431", rating: 2, numberOfPeople: 3, price: 250, comodidades: ["Cafe da Manha"]},
+        {id: 312312213, room: "156", rating: 4, umberOfPeople: 10, price: 1000, comodidades: ["Wifi Gratis"]}
       ],
       url: 'https://www.google.com.br/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjcpIe7waXeAhVHf5AKHYWnBQ8QjRx6BAgBEAU&url=https%3A%2F%2Fwww.idakochi.org%2F&psig=AOvVaw3hxnGGKomSpJjkhZGD3E74&ust=1540691552260583',
-      country: 'United State of America'
+      country: 'Estados Unidos da América'
       },
       {name: "São Paulo Hotel", availableRooms: [
-        {id: 24324324,room: "876", numberOfPeople: 3, price: 111, rating: 5, comodidades: ["Cafe da Manha"]},
-        {id: 11213344, room: "888", numberOfPeople: 2, price: 222, rating: 4, comodidades: ["Almoco", "Wifi Gratis"]},
-        {id: 12321311, room: "17731", numberOfPeople: 2, price: 333, rating: 4, comodidades: ["Cafe da Manha", "Almoco"]},
-        {id: 93998112, room: "1345", numberOfPeople: 1, price: 444, rating: 3, comodidades: ["Almoco"] },
-        {id: 99125611 , room: "14123", numberOfPeople: 5, price: 555, rating: 5, comodidades: ["Wifi Gratis"]},
-        {id: 91293102, room: "43211", numberOfPeople: 3, price: 666, rating: 2, comodidades: ["Almoco", "Shows Musicais"]},
-        {id: 10310233, room: "23123", numberOfPeople: 10, price: 777, rating: 5, comodidades: ["Shows Musicais", "Cafe da Manha"]}
+        {id: 24324324,room: "876", rating: 3, numberOfPeople: 3, price: 111, comodidades: ["Cafe da Manha"]},
+        {id: 11213344, room: "888", rating: 5, numberOfPeople: 2, price: 222, comodidades: ["Almoco", "Wifi Gratis"]},
+        {id: 12321311, room: "17731", rating: 3, numberOfPeople: 2, price: 333, comodidades: ["Cafe da Manha", "Almoco"]},
+        {id: 93998112, room: "1345", rating: 2, numberOfPeople: 1, price: 444,comodidades: ["Almoco"] },
+        {id: 99125611 , room: "14123", rating: 2, numberOfPeople: 5, price: 555, comodidades: ["Wifi Gratis"]},
+        {id: 91293102, room: "43211", rating: 4, numberOfPeople: 3, price: 666, comodidades: ["Almoco", "Shows Musicais"]},
+        {id: 10310233, room: "23123", rating: 1, numberOfPeople: 10, price: 777, comodidades: ["Shows Musicais", "Cafe da Manha"]}
       ],
       url: 'https://www.google.com.br/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjcpIe7waXeAhVHf5AKHYWnBQ8QjRx6BAgBEAU&url=https%3A%2F%2Fwww.idakochi.org%2F&psig=AOvVaw3hxnGGKomSpJjkhZGD3E74&ust=1540691552260583',
-      country: 'Brazil'
+      country: 'Brasil'
       },
       {name: "Astron Baden Baden", availableRooms: [
-        {room: "876", numberOfPeople: 3, price: 1000, rating: 5, comodidades: ["Shows Musicais"]},
-        {room: "888", numberOfPeople: 2, price: 2000, rating: 4, comodidades: ["Shows Musicais", "Wifi Gratis"]},
-        {room: "17731", numberOfPeople: 2, price: 3000, rating: 4, comodidades: ["Almoco", "Wifi Gratis"]},
-        {room: "1345", numberOfPeople: 1, price: 4000, rating: 3, comodidades: ["Shows Musicais"]},
-        {room: "14123", numberOfPeople: 5, price: 5000, rating: 5 },
-        {room: "43211", numberOfPeople: 3, price: 6000, rating: 2 },
-        {room: "23123", numberOfPeople: 10, price: 7000, rating: 5 }
+        {room: "876", rating: 1, numberOfPeople: 3, price: 1000, comodidades: ["Shows Musicais"]},
+        {room: "888", rating: 5, numberOfPeople: 2, price: 2000, comodidades: ["Shows Musicais", "Wifi Gratis"]},
+        {room: "17731", rating: 3, numberOfPeople: 2, price: 3000, comodidades: ["Almoco", "Wifi Gratis"]},
+        {room: "1345", rating: 2, numberOfPeople: 1, price: 4000, comodidades: ["Shows Musicais"]},
+        {room: "14123", rating: 1, numberOfPeople: 5, price: 5000, comodidades: ["Shows Musicais", "Wifi Gratis"] },
+        {room: "43211", rating: 3, numberOfPeople: 3, price: 6000, comodidades: ["Cafe da Manha", "Almoco"]},
+        {room: "23123", rating: 0, numberOfPeople: 10, price: 7000, comodidades: ["Cafe da Manha", "Almoco"]}
       ],
       url: 'https://www.google.com.br/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjcpIe7waXeAhVHf5AKHYWnBQ8QjRx6BAgBEAU&url=https%3A%2F%2Fwww.idakochi.org%2F&psig=AOvVaw3hxnGGKomSpJjkhZGD3E74&ust=1540691552260583',
-      country: 'Mexico'
+      country: 'México'
       },
       {name: "Matsuraba Hotel", availableRooms: [
-        {room: "876", numberOfPeople: 3, price: 111, rating: 5 },
-        {room: "888", numberOfPeople: 2, price: 222, rating: 4 },
-        {room: "17731", numberOfPeople: 2, price: 333, rating: 4 },
-        {room: "1345", numberOfPeople: 1, price: 444, rating: 3 },
-        {room: "14123", numberOfPeople: 5, price: 555, rating: 5 },
-        {room: "43211", numberOfPeople: 3, price: 666, rating: 2 },
-        {room: "23123", numberOfPeople: 10, price: 777, rating: 5 }
+        {room: "876", numberOfPeople: 3, price: 111, rating: 5, comodidades: ["Cafe da Manha", "Almoco"] },
+        {room: "888", numberOfPeople: 2, price: 222, rating: 4, comodidades: ["Shows Musicais", "Wifi Gratis"]},
+        {room: "17731", numberOfPeople: 2, price: 333, rating: 4, comodidades: ["Shows Musicais"]},
+        {room: "1345", numberOfPeople: 1, price: 444, rating: 3, comodidades: ["Cafe da Manha"]},
+        {room: "14123", numberOfPeople: 5, price: 555, rating: 5, comodidades: ["Shows Musicais", "Wifi Gratis"] },
+        {room: "43211", numberOfPeople: 3, price: 666, rating: 2, comodidades: ["Cafe da Manha"]},
+        {room: "23123", numberOfPeople: 10, price: 777, rating: 5, comodidades: ["Cafe da Manha", "Almoco"]}
       ],
       url: 'https://www.google.com.br/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjcpIe7waXeAhVHf5AKHYWnBQ8QjRx6BAgBEAU&url=https%3A%2F%2Fwww.idakochi.org%2F&psig=AOvVaw3hxnGGKomSpJjkhZGD3E74&ust=1540691552260583',
-      country: 'The Netherlands'
+      country: 'Holanda'
     },
-      {name: "Intercontinental", availableRooms: []},
-      {name: "Astron Baden Baden", availableRooms: []},
-      {name: "Matsuraba Hotel", availableRooms: []},
-      {name: "Intercontinental", availableRooms: []},
-      {name: "Astron Baden Baden", availableRooms: []},
-      {name: "Matsuraba Hotel", availableRooms: []},
-      {name: "Intercontinental", availableRooms: []},
-      {name: "Astron Baden Baden", availableRooms: []},
-      {name: "Matsuraba Hotel", availableRooms: []},
-      {name: "Intercontinental", availableRooms: []},
-      {name: "Astron Baden Baden", availableRooms: [] }
+      {name: "Intercontinental", availableRooms: [
+        {room: "876", numberOfPeople: 3, price: 111, rating: 5 },
+        {room: "888", numberOfPeople: 2, price: 222, rating: 4, comodidades: ["Shows Musicais", "Wifi Gratis"] },
+        {room: "17731", numberOfPeople: 2, price: 333, rating: 4, comodidades: ["Almoco"] },
+        {room: "1345", numberOfPeople: 1, price: 444, rating: 3, comodidades: ["Cafe da Manha", "Almoco"]},
+        {room: "14123", numberOfPeople: 5, price: 555, rating: 5, comodidades: ["Cafe da Manha"] },
+        {room: "43211", numberOfPeople: 3, price: 666, rating: 2, comodidades: ["Almoco"] },
+        {room: "23123", numberOfPeople: 10, price: 777, rating: 5, comodidades: ["Shows Musicais", "Wifi Gratis"] }
+      ],
+      url: 'https://www.google.com.br/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjcpIe7waXeAhVHf5AKHYWnBQ8QjRx6BAgBEAU&url=https%3A%2F%2Fwww.idakochi.org%2F&psig=AOvVaw3hxnGGKomSpJjkhZGD3E74&ust=1540691552260583',
+      country: 'Nova Zelândia'
+      },
+      {name: "Astron Baden Baden", availableRooms: [
+        {room: "876", numberOfPeople: 3, price: 111, rating: 5 },
+        {room: "888", numberOfPeople: 2, price: 222, rating: 4, comodidades: ["Shows Musicais"] },
+        {room: "17731", numberOfPeople: 2, price: 333, rating: 4, comodidades: ["Cafe da Manha", "Almoco"] },
+        {room: "1345", numberOfPeople: 1, price: 444, rating: 3, comodidades: ["Cafe da Manha"] },
+        {room: "14123", numberOfPeople: 5, price: 555, rating: 5, comodidades: ["Shows Musicais"] },
+        {room: "43211", numberOfPeople: 3, price: 666, rating: 2, comodidades: ["Almoco"] },
+        {room: "23123", numberOfPeople: 10, price: 777, rating: 5, comodidades: ["Shows Musicais"] }
+      ],
+      url: 'https://www.google.com.br/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjcpIe7waXeAhVHf5AKHYWnBQ8QjRx6BAgBEAU&url=https%3A%2F%2Fwww.idakochi.org%2F&psig=AOvVaw3hxnGGKomSpJjkhZGD3E74&ust=1540691552260583',
+      country: 'Australia'}
     ],
     filteredHotels: null,
     hospedes: {
       adultos: 0,
-      criancas: 0
+      criancas: 0,
+      errorMessage: ''
     },
     preco: 0,
     ratings: 0,
@@ -92,11 +120,14 @@ class App extends Component {
       wifiGratis: false,
       showsMusicais: false
     },
-    country: ''
+    country: '',
+    numberHotels: null,
+    ratingValue: 0
   }
 
   apply = (e) => {
     e.preventDefault();
+    console.log(e);
 
     //Declaring values that will be used to filter the Hotels.
     const aux = this.state.hotels;
@@ -105,6 +136,7 @@ class App extends Component {
     const comodidades = this.state.comodidades;
     const preco = this.state.preco;
     const country = this.state.country;
+    const rating = this.state.ratingValue;
 
     //create an array with values that are true for conviences
     const comodidadeTrue = Object.keys(comodidades).filter(k => {
@@ -115,70 +147,138 @@ class App extends Component {
 
     let filteredHotels = [];
 
-    //filter by Guests based on User Input and summing the total number of people.
-    if(auxAdultos !== 0 || auxCriancas !== 0){
-      filteredHotels = [];
-      aux.map(hotel => {
-        if(hotel.availableRooms !== undefined){
-            hotel.availableRooms.map(room => {
-            if(room.numberOfPeople === (auxAdultos + auxCriancas)){
-              filteredHotels.push({name: hotel.name, room: room, price: room.price, rating: room.rating, country: hotel.country, comodidades: room.comodidades})
-            }
-            return null
-          });
-        }
-      });
-    }
-    else{
-      filteredHotels = [];
-      aux.map(hotel => {
-        if(hotel.availableRooms !== undefined){
-            hotel.availableRooms.map(room => {
-              filteredHotels.push({name: hotel.name, room: room, price: room.price, rating: room.rating, country: hotel.country, comodidades: room.comodidades})
-            return null
-          });
-        }
-      });
-    }
-    
-
-    console.log("First Filter");
-    console.log(filteredHotels);
-
-    //filter by Conveniences
-    if (comodidadeTrue.length > 0){
-      console.log("entrou");
-      filteredHotels = filteredHotels.filter(room => {
-        if (room.comodidades !== undefined){
-          let newComodidades = Functions.arrayCamelize(room.comodidades);
-          return newComodidades.sort().join(',') === comodidadeTrue.sort().join(',') ? true : false;
-        }
-        
-      });
-    }
-    console.log("Second Filter");
-    console.log(filteredHotels);
-
-    //filter by Price
-    if (preco > 0){
-      filteredHotels = filteredHotels.filter(room => {
-        return room.price <= preco;
-      });
-    }
-
-    console.log("Third Filter");
-    console.log(filteredHotels);
 
     if (country !== ''){
+
+      //get a list of every room available
+      aux.map(hotel => {
+        if(hotel.availableRooms !== undefined){
+          hotel.availableRooms.map(room => {
+            filteredHotels.push({name: hotel.name, price: room.price, rating: room.rating, country: hotel.country, comodidades: room.comodidades, numberOfPeople: room.numberOfPeople})
+            return null;
+          });
+        }
+        return null;
+      });
+
+      //filtering by country
       filteredHotels = filteredHotels.filter(room => {
         return room.country === country;
       });
-    } 
-    console.log("Fourth Filter");
-    console.log(filteredHotels);
+
+      console.log("Filter by Country");
+      console.log(filteredHotels);
+ 
+
+      //filter by Guests based on User Input and summing the total number of people.
+      if(auxAdultos !== 0 || auxCriancas !== 0){
+        console.log("Esse eh o array!");
+        console.log(filteredHotels);
+        filteredHotels = filteredHotels.filter(room => {
+          return room.numberOfPeople === (auxAdultos + auxCriancas);
+        });
+      }
+
+      console.log("Filter by People");
+      console.log(filteredHotels);
+
+      //filter by Conveniences
+      if (comodidadeTrue.length > 0){
+        console.log("entrou");
+        filteredHotels = filteredHotels.filter(room => {
+          if (room.comodidades !== undefined){
+            let newComodidades = Functions.arrayCamelize(room.comodidades);
+            return newComodidades.sort().join(',') === comodidadeTrue.sort().join(',') ? true : false;
+          }
+          return null;
+        });
+      }
+      console.log("Filter by Conveniences");
+      console.log(filteredHotels);
+
+      //filter by Price
+      if (preco > 0){
+        filteredHotels = filteredHotels.filter(room => {
+          return room.price <= preco;
+        });
+      }
+
+      console.log("Filter by Price");
+      console.log(filteredHotels);
+
+      //filter by Ratings
+      if (rating !== 0){
+        filteredHotels = filteredHotels.filter(room => {
+          return room.rating == rating;
+        });
+      }
+
+    }
+    else{
+      aux.map(hotel => {
+        if(hotel.availableRooms !== undefined){
+          hotel.availableRooms.map(room => {
+            filteredHotels.push({name: hotel.name, price: room.price, rating: room.rating, country: hotel.country, comodidades: room.comodidades, numberOfPeople: room.numberOfPeople})
+            return null;
+          }); 
+        }
+        return null;
+      });
+
+       //filter by Guests based on User Input and summing the total number of people.
+       if(auxAdultos !== 0 || auxCriancas !== 0){
+        console.log("Esse eh o array!");
+        console.log(filteredHotels);
+        filteredHotels = filteredHotels.filter(room => {
+          return room.numberOfPeople === (auxAdultos + auxCriancas);
+        });
+      }
+
+      console.log("Filter by People");
+      console.log(filteredHotels);
+
+      //filter by Conveniences
+      if (comodidadeTrue.length > 0){
+        console.log("entrou");
+        filteredHotels = filteredHotels.filter(room => {
+          if (room.comodidades !== undefined){
+            let newComodidades = Functions.arrayCamelize(room.comodidades);
+            return newComodidades.sort().join(',') === comodidadeTrue.sort().join(',') ? true : false;
+          }
+          return null;
+        });
+      }
+      console.log("Filter by Conveniences");
+      console.log(filteredHotels);
+
+      //filter by Price
+      if (preco > 0){
+        filteredHotels = filteredHotels.filter(room => {
+          return room.price <= preco;
+        });
+      }
+
+      console.log("Filter by Price");
+      console.log(filteredHotels);
+
+      //filter by Ratings
+      if (rating !== 0){
+        filteredHotels = filteredHotels.filter(room => {
+          console.log("quarto review:");
+          console.log(room.rating);
+          console.log("cliente quer: ");
+          console.log(rating);
+          return room.rating == rating;
+        });
+      }
+
+      console.log("Filter by Ratings");
+      console.log(filteredHotels);
+    }
 
     this.setState({
-      filteredHotels: filteredHotels
+      filteredHotels: filteredHotels,
+      numberHotels: filteredHotels.length
     });
 
   }
@@ -187,8 +287,6 @@ class App extends Component {
     this.setState({
       preco: 0
     });
-
-    this.apply();
   }
 
   //Function used to reset state values and bring the filter to an initial state.
@@ -196,8 +294,6 @@ class App extends Component {
     this.setState({
       hospedes: {adultos: 0, criancas: 0}
     });
-
-    this.apply();
   }
 
   handleComodidades = (e) => {
@@ -228,31 +324,44 @@ class App extends Component {
   changeHospedes = (e) => {
     const auxAdulto = this.state.hospedes.adultos;
     const auxCriancas = this.state.hospedes.criancas;
+
+    if(auxAdulto+1 === 6){
+      console.log("opa!");
+      this.setState((previousState)=>({
+        hospedes: {...previousState.hospedes, errorMessage: 'Não é permitido acima de 5 adultos'}
+      }))
+    }
+    if(auxCriancas+1 === 6){
+      this.setState((previousState)=>({
+        hospedes: {...previousState.hospedes, errorMessage: 'Não é permitido acima de 5 criancas'}
+      }))
+    }
+
     auxAdulto > 0 && (
       e.currentTarget.value === 'removeAdult' && (
         this.setState((previousState) => ({
-          hospedes: {...previousState.hospedes, adultos: previousState.hospedes.adultos-1}
+          hospedes: {...previousState.hospedes, adultos: previousState.hospedes.adultos-1, errorMessage: ''}
         }))
       )
     );
     auxAdulto < 5 && (
       e.currentTarget.value === "addAdult" && (
         this.setState((previousState) => ({
-          hospedes: {...previousState.hospedes, adultos: previousState.hospedes.adultos+1}
+          hospedes: {...previousState.hospedes, adultos: previousState.hospedes.adultos+1, errorMessage: ''}
         }))
       ) 
     )
     auxCriancas > 0 && (
       e.currentTarget.value === 'removeChild' && (
         this.setState((previousState) => ({
-          hospedes: {...previousState.hospedes, criancas: previousState.hospedes.criancas-1}
+          hospedes: {...previousState.hospedes, criancas: previousState.hospedes.criancas-1, errorMessage: ''}
         }))
       )
     )
     auxCriancas < 5 && (
       e.currentTarget.value === 'addChild' && (
         this.setState((previousState) => ({
-          hospedes: {...previousState.hospedes, criancas: previousState.hospedes.criancas+1}
+          hospedes: {...previousState.hospedes, criancas: previousState.hospedes.criancas+1, errorMessage: ''}
         }))
       )
     )
@@ -260,15 +369,27 @@ class App extends Component {
   }
 
   handleInputDestination = (e) => {
-    console.log(e);
     this.setState({
       country: e.target.value
     });
   }
 
+  changeRating = (e) => {
+    this.setState({
+      ratingValue: e.target.value
+    })
+  }
+
+  resetRating = (e) => {
+    this.setState({
+      ratingValue: 0
+    })
+  }
+
+
   render() {
 
-    const { hotels, hospedes, filteredHotels, comodidades, preco, country }= this.state;
+    const { hotels, hospedes, filteredHotels, comodidades, preco, country, numberHotels, ratingValue }= this.state;
 
     
 
@@ -285,10 +406,14 @@ class App extends Component {
         resetPrice={this.resetPrice}
         handleInputDestination={this.handleInputDestination}
         country={country}
+        numberHotels={numberHotels}
+        ratingValue={ratingValue}
+        changeRating={this.changeRating}
+        resetRating={this.resetRating}
         >
         </Navbar>
         <div id="mainPage">
-        <Hotels hotels={hotels} filteredHotels={filteredHotels} hospedes={hospedes}></Hotels>
+        <Hotels hotels={hotels} filteredHotels={filteredHotels} hospedes={hospedes} changeRating={this.changeRating}></Hotels>
         </div>
       </div>     
     );

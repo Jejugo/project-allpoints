@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../../css/FilterHeader.css'
 
 const ModalPreco = (props) => {
@@ -11,7 +11,7 @@ const ModalPreco = (props) => {
         <h4 className="center comodidades-titulo" style={{margin: "2% 0 15% 0"}}>Diária</h4>
         <form action="#">
           <p className="range-field">
-            <input type="range" id="test5" min="0" max="1000" value={preco} onChange={(e) => changePrice(e)}/>
+            <input type="range" min="0" max="1000" value={preco} onChange={(e) => changePrice(e)}/>
           </p>
         </form>
         <div>

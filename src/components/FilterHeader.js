@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import '../css/FilterHeader.css'
 import ModalHospede from './modals/ModalHospede';
-import ModalData from './modals/ModalData';
 import ModalComodidade from './modals/ModalComodidade';
 import ModalPreco from './modals/ModalPreco';
 import ModalRating from './modals/ModalRating';
@@ -9,7 +8,7 @@ import ModalRating from './modals/ModalRating';
 class FilterHeader extends Component {
   render() {
 
-    const { changeHospedes, hospedes, resetGuestValues, apply, handleComodidades, comodidades, changePrice, preco, resetPrice } = this.props;
+    const { changeHospedes, hospedes, resetGuestValues, apply, handleComodidades, comodidades, changePrice, preco, resetPrice, ratingValue, changeRating, resetRating } = this.props;
 
 
     return (
@@ -26,7 +25,7 @@ class FilterHeader extends Component {
         <ModalHospede changeHospedes={changeHospedes} hospedes={hospedes} resetGuestValues={resetGuestValues} apply={apply}></ModalHospede>
         <ModalComodidade handleComodidades={handleComodidades} comodidades={comodidades} apply={apply}></ModalComodidade>
         <ModalPreco changePrice={changePrice} preco={preco} apply={apply} resetPrice={resetPrice}></ModalPreco>
-        <ModalRating></ModalRating>
+        <ModalRating ratingValue={ratingValue} apply={apply} changeRating={changeRating} resetRating={resetRating}></ModalRating>
       </div>
     );
   }

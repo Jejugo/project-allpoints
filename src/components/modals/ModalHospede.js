@@ -9,16 +9,19 @@ const ModalHospede = (props) => {
     <div className="modal modal-hotel" id="hospedes">
     <div className="modal-content">
       <div className="col s12 hospedes-line">
+      {hospedes.errorMessage !== null && (
+          <p style={{color: "red"}}>{hospedes.errorMessage}</p>
+        )}
         <span>Adultos</span>
-        <button className="btn-floating btn-small waves-effect btn waves-light right filter-modal" onClick={(e) => changeHospedes(e)} value="addAdult"><i className="material-icons">add_circle_outline</i></button>
+        <button className="btn-flat btn right" onClick={(e) => changeHospedes(e)} value="addAdult"><i className="material-icons">add_circle_outline</i></button>
         <span className="number-guest right">{hospedes.adultos === null ? 0 : hospedes.adultos}</span>
-        <button className="btn-floating btn-small waves-effect btn waves-light right filter-modal" onClick={(e) => changeHospedes(e)} value="removeAdult"><i className="material-icons">remove_circle_outline</i></button>
+        <button className="btn-flat btn right" onClick={(e) => changeHospedes(e)} value="removeAdult"><i className="material-icons">remove_circle_outline</i></button>
       </div>
       <div className="col s12 hospedes-line">
         <span>Criancas</span>
-        <button className="btn-floating btn-small waves-effect btn waves-light right filter-modal" onClick={(e) => changeHospedes(e)} value="addChild"><i className="material-icons">add_circle_outline</i></button>
+        <button className="btn-flat btn right" onClick={(e) => changeHospedes(e)} value="addChild"><i className="material-icons">add_circle_outline</i></button>
         <span className="number-guest right">{hospedes.criancas === null ? 0 : hospedes.criancas}</span>
-        <button className="btn-floating btn-small waves-effect btn waves-light right filter-modal" onClick={(e) => changeHospedes(e)} value="removeChild"><i className="material-icons">remove_circle_outline</i></button>
+        <button className="btn-flat btn right filter-modal" onClick={(e) => changeHospedes(e)} value="removeChild"><i className="material-icons">remove_circle_outline</i></button>
       </div>
       <hr></hr>
       <div>

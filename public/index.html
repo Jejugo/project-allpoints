@@ -51,6 +51,17 @@
       $('.modal').modal();
       $('.datepicker').datepicker();
       $('datapicker').addClass("modal-datapicker-hotel");
+      $('input.autocomplete').autocomplete({
+        data: {
+          "Estados Unidos da América": null,
+          "Brasil": null,
+          "Holanda": null,
+          "México": null,
+          "Nova Zelândia": null,
+          "Australia": null
+        },
+      });
+
 
       $('.btn-destination').click(function(){
         $(this).fadeOut();

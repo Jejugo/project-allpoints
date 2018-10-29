@@ -1,5 +1,5 @@
 .header{
-  background-color: rgb(84, 26, 110); 
+  background-color: rgb(73, 23, 97) 
 }
 
 #header-buttons {
@@ -39,7 +39,7 @@
 }
 
 .btn-destination{
-  background-color: rgb(84, 26, 110) !important; 
+  background-color: rgb(73, 23, 97) !important; 
   border: 1px solid white !important;
   color: white;
   position: absolute;
